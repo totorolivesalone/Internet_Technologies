@@ -1,0 +1,149 @@
+const http=require('http');
+const url=require('url');
+const fs=require('fs');
+const mysql= require('mysql');
+const qs=require('querystring');
+const bs=require('body-parser');
+const hostname='localhost';
+const port =3000;
+http.Agent(bs.json());
+http.Agent(bs.urlencoded({extended:true}));
+function onRequest(req,res){
+    var baseURL='http://'+ req.headers.host+'/';
+    var myURL=new URL(req.URL,baseURL);
+    res.statusCode=200;
+    res.setHeader('Content-Type','text/html');
+    if(req.url =='/')
+    {
+        index(req,res);
+    }else if(req.url=='/showsignin')
+    {
+        showsignin(req,res);
+    }else if(req.url=='/showsignup'){
+        showsignup(req,res)
+    }
+    else if(req.url=='/dosignin'){
+        var body="";
+        req.on('data',function(data){
+            body+=data;
+        });
+        req.on('end',function(){
+            var post=body.body;
+            console.log(post);
+            dosignin(req,res,post);
+        })
+    }
+    else if(req.url=='/dosignup'){
+        var body="";
+        req.on('data',function(data){
+            body+=data;
+        });
+        req.on('end',function(){
+            var post=qs.parse(body);
+            dosignup(req,res,post);
+        })
+    }else{
+        res.end();
+    }
+}
+function dosignin(req,res,body){
+    var connection=mysql.createConnection(
+        {
+            host:'localhost',
+            user:'root',
+            password:'',
+            database:'mydb'
+        }
+    )
+    connection.connect(function(err){
+        var username=body.username;
+        var password=body.password;
+        connection.query("SELECT * FROM userlogin WHERE username=? and password=?;",[username,password],
+        function(err,result,fields){
+            console.log(result);
+         if(err || result.length<1){
+            res.write("failed");
+            res.end();
+            return;
+         }
+         else{
+            res.write("Sign-In successful");
+            res.end();
+         }    
+        }
+        )
+    });
+    connection.end();
+
+}
+function dosignup(req,res,body){
+    var con=mysql.createConnection({
+        host:'localhost',
+        user:'root',
+        password:'',
+        database:'mydb'
+    });
+    con.connect(function(err){
+        var cnfrmpass=body.cnfrmpassword;
+        var pass=body.password;
+    
+         var inputData={username:body.username,password:body.password,email:body.email}
+        con.query("SELECT * FROM userlogin where username=? ;",[inputData.username],function(err,result,fields){
+            console.log(result);
+            if(err){
+                res.write("failed");
+                res.end();
+
+            }else if(result.length>0){
+                res.write("Username already exists.");
+                res.end();
+            }else if(pass!=cnfrmpass){
+                res.write("Confirmed password does not match password.Retry");
+                res.end();
+                
+            }
+            else{
+                con.query("INSERT INTO userlogin SET ? ;",inputData,function(err,result,err){
+                console.log(result);
+                if(err){
+                    res.write("Failed");
+                    res.end();
+                    return;
+                }
+                res.write("Successful sign-up");
+                res.end();
+
+
+                })
+            }
+
+        })
+        
+
+    });
+    con.end();
+}
+function showsignin(req,res){
+    fs.readFile('signIn.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+
+}
+function showsignup(req,res){
+    fs.readFile('signUp.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+
+}
+function index(req,res){
+    fs.readFile('index.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+}
+const server=http.createServer(onRequest);
+server.listen(port,hostname, ()=>{
+    console.log("Listening on port 3000");
+})

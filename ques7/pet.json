@@ -1,0 +1,24 @@
+[
+    {
+        "name":"snowy",
+        "age":"3",
+        "weight_in_kg":"10",
+        "type":"persian cat",
+        "likes":"cat toys, sleep"
+    },
+    {
+        "name":"poppy",
+        "age":"2",
+        "weight_in_kg":"2",
+        "type":"ringneck parakeet",
+        "likes":"flax seeds"
+    },
+    {
+        "name":"pigeot",
+        "age":"2",
+        "weight_in_kg":"3",
+        "type":"pigeon",
+        "likes":"seeds"
+    }
+
+]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style type="text/css">
+        body{
+            margin:20px 20px 20px 20px;
+        }
+        form{
+            max-width:1200px;
+        }
+        label{
+            padding:10px;
+        }
+        #pfav{
+            width:600px;
+        }
+        fieldset{
+            border-color:greenyellow;
+        }
+        #sub{
+            height:30px;
+            background-color: aquamarine;
+
+        }
+
+    </style>
+</head>
+<body>
+    <form id="pet" >
+        <fieldset>
+            <legend><h1>Pet details</h1></legend>
+            <div id="div2">
+                <label for="pname" >Name</label>
+                <input type="text" id="pname" required />
+            </div>
+            <br />
+            <div id="div2">
+                <label for="page" >Age</label>
+                <input type="number" id="page" required />
+            </div>
+            <br />
+            <div id="div3">
+                <label for="pweight" >Weight (in kg)</label>
+                <input type="decimal" id="pweight"  required />
+            </div>
+            <br />
+            <div id="div4">
+                <label for="ptype" >Type</label>
+                <input type="text" id="ptype" required />
+            </div>
+            <br />
+            <div id="div5">
+                <label for="pfav" >Favourite things</label>
+                <input type="text" id="pfav" required />
+            </div>
+            <br />
+            <center><input type="submit" id="sub" /></center>
+        </fieldset>
+
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#pet").on('submit', function(e){
+
+                e.preventDefault();
+                alert("Form submitted.Check console!");
+                $("#sub").prop("disabled", true);
+                $("input").prop("disabled",true);
+                $("body").css("background-color","greenyellow");
+                const pet={};
+                pet.name=$("#pname").val();
+                pet.age=$("#page").val();
+                pet.weight_in_kg=$("#pweight").val();
+                pet.type=$("#ptype").val();
+                pet.likes=$("#pfav").val();
+                console.log(pet);
+                const petJSON=JSON.stringify(pet);
+                console.log(petJSON);
+
+
+            })
+        })
+
+    </script>
+</body>
+</html>

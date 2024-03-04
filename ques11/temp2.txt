@@ -1,0 +1,134 @@
+const http=require("http");
+const mysql=require("mysql");
+const fs=require("fs");
+const qs=require("querystring");
+const mycon=mysql.createConnection({
+    host:'localhost',
+            user:'root',
+            password:'',
+            database:'mydb'
+
+})
+mycon.connect((err,data)=>{
+    if(err){
+        console.log("Couldnot connect to db");
+    }
+    else{
+        console.log("db connected");
+    }
+});
+const server=http.createServer((req,res)=>{
+    const path=req.url;
+    if(path=='/')
+    {
+        index(req,res);
+    }
+    else if(path=='/showsignup')
+    {
+        showsignup(req,res);
+
+    }
+    else if(path=='/showsignin')
+    {
+        showsignin(req,res);
+    }else if(req.method=='POST' && path=='/dosignup')
+    {
+        dosignup(req,res);
+    }
+    else if(req.method=='POST' && path=='/dosignin')
+    {
+        dosignin(req,res);
+    }
+
+});
+
+server.listen(3000, ()=>{
+    console.log("Listening to port 3000");
+});
+
+function showsignin(req,res){
+    fs.readFile('signIn.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+
+}
+function showsignup(req,res){
+    fs.readFile('signUp.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+
+}
+function index(req,res){
+    fs.readFile('index.html',function(err,data){
+        res.write(data);
+        return res.end();
+    });
+}
+function dosignin(req,res){
+    var body='';
+    req.on('data',(chunk)=>{
+        body+=chunk;
+    });
+    req.on('end',()=>{
+        var d=qs.parse(body);
+        var query=`SELECT * FROM userlogin where username= ? AND password= ?`;
+        mycon.query(query,[d.username,d.password], (err,data)=>{
+            if(err){
+                console.log("Error in server");
+                res.write("Error in server");
+                res.statusCode=404;
+                res.end();
+            }
+            else{
+                console.log(data);
+                if(data.length==1)
+                {
+                    res.statusCode=200;
+                    res.write("Sign in successful");
+                    res.end();
+                }else{
+                    res.statusCode=409;
+                    res.write("Sign In failed");
+                    res.end();
+                }
+            }
+        })
+    })
+};
+
+function dosignup(req,res){
+    var body='';
+    req.on('data',(chunk)=>{
+        body+=chunk;
+    });
+    req.on('end',()=>{
+        var d=qs.parse(body);
+        console.log(d);
+        var query=`INSERT INTO userlogin VALUES (?,?,?)`;
+        mycon.query(query,[d.username,d.password,d.email],(err,data)=>{
+            if(err){
+                console.log("Error in server");
+                res.write("Error in server");
+                res.statusCode=404;
+                res.end();
+            }
+            else{
+                console.log(data);
+                if(data.length==1)
+                {
+                    res.statusCode=200;
+                    res.write("Sign up successful");
+                    res.end();
+                }else{
+                    res.statusCode=409;
+                    res.write("Sign In failed");
+                    res.end();
+                }
+            }
+
+        })
+    })
+
+}

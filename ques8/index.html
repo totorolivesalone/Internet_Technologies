@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+    <style type="text/css">
+        *{
+            margin:0px 0px 0px 0px;
+        }
+        body{
+            margin:0px 0px 0px 0px;
+        }
+        #banner{
+            background-color:cyan;
+            margin-top:0px;
+            
+        }
+        td{
+            border: 1px solid black;
+
+        }
+        th{
+            border:1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="banner">
+        <center>
+            <h1>MATA SUNDRI COLLEGE FOR WOMEN</h1>
+            <h3>BSc. (Hons) Computer Science</h3>
+            <h4>Department of Computer Science</h4>
+            <br />
+        </center>
+
+    </div>
+    <br />
+    <div id="content">
+        <div id="cont1">
+            <h2 class="content_header">Eligibility</h2>
+            <p class="content_content">Only female candidates; must have passed(10+2) with Maths as compulsory subject. Selection would be done on the basis of CUET scores with Maths and English as compulsory subject</p>
+        </div>
+    </div>
+    <hr />
+    <div id="cont2">
+        <h2 class="content_header">Fees</h2>
+        <p class="content_content">The fees would be dependent on guidelines given by DU for the academic year. For academic year 2022-2023 , first year UG fees was Rs.27500</p>
+    </div>
+    <hr />
+    <div id="cont3">
+        <h2 class="content_header">Core Course structure</h2>
+        <center>
+        <table id="course">
+            <tr>
+                <th>Semester</th>
+                <th>Paper Name</th>
+                <th>Credits</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>CSA</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>C++</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Calculus</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>English Comm.</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Java</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Discrete Maths</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Linear Algebra</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>EVS</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Computer Networks</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Operating Systems</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Data Structures </td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>LPP</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Web Development</td>
+                <td>4</td>
+            </tr>
+
+
+        </table> </center> </div>
+        <br/>
+        <hr />                                                                      
+        <div id="cont4">
+            <h2 class="content_header">Future possibilities</h2>
+            <p class="content_content">
+                There are endless oportunities after this course. You can become a software engineer, business analyst , coding tutor , etc. You can pursue masters in Computer Science too!
+            </p>
+        </div>
+        <br/>
+        <br />
+        <div id="cont5">
+            <center><button id="change">Redesign</button></center>
+
+        </div>
+    </div>
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $("#change").click(function(){
+                $("#banner").css('background-color',"purple");
+                $("#banner").css("color","white");
+                $(".content_header").css("color","purple");
+                $("th").css("background-color","purple");
+                $("th").css("color","white");
+                $("body").css("background-color",'antiquewhite');
+                $("hr").css("border-color","purple");
+            })
+        })
+    </script>
+
+    
+</body>
+</html>

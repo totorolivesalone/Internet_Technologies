@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:10px 10px 10px 10px;
+
+        }
+        #buttons-grid{
+            max-width:500px;
+            display:grid;
+            grid-template-columns: auto auto auto;
+
+        }
+        button{
+            width:100%;
+        }
+
+    </style>
+</head>
+<body>
+    <p id="para">
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+    </p>
+    <br/>
+    <center>
+    <div id="buttons-grid">
+        <div id="red"><button>Red</button></div>
+        <div id="green"><button>Green</button></div>
+        <div id="blue"><button>Blue</button></div>
+        <div id="10"><button>10</button></div>
+        <div id="20"><button>20</button></div>
+        <div id="30"><button>30</button></div>
+        <div id="Verdana"><button>Verdana</button></div>
+        <div id="Ariel"><button>Ariel</button></div>
+        <div id="Helvetica"><button>Helvetica</button></div>
+    </div></center>
+    <script type="text/javascript">
+        var para=document.getElementById("para");
+        var red=document.getElementById("red");
+        var green=document.getElementById("green");
+        var blue=document.getElementById("blue");
+        var ten=document.getElementById("10");
+        var twenty=document.getElementById("20");
+        var thirty=document.getElementById("30");
+        var font1=document.getElementById("Verdana");
+        var font2=document.getElementById("Ariel");
+        var font3=document.getElementById("Helvetica");
+        red.addEventListener("click",function(){para.style.color="Red"});
+        green.addEventListener("click",function(){para.style.color="Green"});
+        blue.addEventListener("click",function(){para.style.color="Blue"});
+        ten.addEventListener("click",function(){para.style.fontSize="10px"});
+        twenty.addEventListener("click",function(){para.style.fontSize="20px"});
+        thirty.addEventListener("click",function(){para.style.fontSize="30px"});
+        font1.addEventListener("click",function(){para.style.fontFamily="Verdana"});
+        font2.addEventListener("click",function(){para.style.fontFamily="Ariel"});
+        font3.addEventListener("click",function(){para.style.fontFamily="Helvetica"});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:50px;
+
+        }
+        .tabs{
+            display:flex;
+            flex-wrap:wrap;
+            max-width:600px;
+            font-family:sans-serif;
+
+        }
+        .tabs__label{
+            padding:10px 16px;
+            cursor:pointer;
+        }
+        .tabs__radio{
+            display:none;
+        }
+        .tabs__content{
+            order:1;
+            width:100%;
+            padding:10px 16px;
+            display:none;
+
+        }
+        .tabs__radio:checked+.tabs__label{
+            font-weight:bold;
+            color:green;
+            border-bottom:2px solid greenyellow;
+        }
+        .tabs__radio:checked+.tabs__label+.tabs__content{
+            display:initial;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <input type="radio" class="tabs__radio" name="tabs_eg" id="about_you" checked>
+        <label class="tabs__label" for="about_you">About me</label>
+        <div class="tabs__content">
+            Hi! I am Tuba.
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs_eg" id="course" >
+        <label class="tabs__label" for="course">Course</label>
+        <div class="tabs__content">
+            I am third year Computer Science Student at MSCW,DU!
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs_eg" id="hobbies" >
+        <label class="tabs__label" for="hobbies">Hobbies</label>
+        <div class="tabs__content">
+            I like to read,write and draw. 
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs_eg" id="address" >
+        <label class="tabs__label" for="address">Address</label>
+        <div class="tabs__content">
+            I live in New Delhi,India! 
+        </div>
+        <input type="radio" class="tabs__radio" name="tabs_eg" id="plans" >
+        <label class="tabs__label" for="plans">Plans</label>
+        <div class="tabs__content">
+            I like to go with the flow. Still unsure about what path to stick to but whatever it is , it's gonna be backend office work. 
+        </div>
+    </div>
+</body>
+</html>

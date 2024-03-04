@@ -1,0 +1,51 @@
+<!DOCTYPE text/html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <base href="/">
+    <script >
+        var colortable=["violet","indigo","blue","cyan","orange","red","pink","green","black"];
+        var fontinc=10;
+        var counter=2;
+        var idVar=setInterval(func,5000);
+        function func()
+        {
+            if(counter==11)
+        {
+            clearInterval(idVar);
+        }
+            var tablerow=document.getElementById(counter.toString());
+            var str="";
+            var product=0;
+            for(let i=1;i<=10;i++)
+            {
+                product=i*counter;
+                str=str+" "+product;
+            }
+            tablerow.innerHTML=str;
+            tablerow.style.color=colortable[counter-2];
+            tablerow.style.fontSize=fontinc.toString();
+            counter++;
+            fontinc+=10;
+        }
+        
+
+    </script>
+</head>
+<body>
+    <table id="mul">
+        <tr id="2"></tr>
+        <tr id="3"></tr>
+        <tr id="4"></tr>
+        <tr id="5"></tr>
+        <tr id="6"></tr>
+        <tr id="7"></tr>
+        <tr id="8"></tr>
+        <tr id="9"></tr>
+        <tr id="10"></tr>
+    </table>
+   
+</body>
+</html>

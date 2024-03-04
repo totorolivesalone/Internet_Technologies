@@ -1,0 +1,73 @@
+<!DOCTYPE text/html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
+    <style type="text/css">
+        th{
+            border: 1px solid black;
+            padding:20px;
+        }
+        td{
+            border: 1px solid black;
+        }
+        
+
+    </style>
+   
+</head>
+<body>
+    <center>
+        <h1>Pet Details</h1>
+        <table id="pet">
+            <tr>
+                <th>Name</th>
+                <th>Age(in yrs)</th>
+                <th>Weight(in kg)</th>
+                <th>Type</th>
+                <th>Likes</th>
+            </tr>
+        </table>
+    </center>
+    <script type="text/javascript">
+        var ourRequest = new XMLHttpRequest();
+        
+        ourRequest.open('GET', 'pet.json');
+        ourRequest.onload = function(){
+           
+        console.log(ourRequest.responseText);
+        var petdata= JSON.parse(ourRequest.responseText);
+        printdata(petdata);
+        };
+        ourRequest.send();
+        function printdata(data){
+            var petrow="";
+            for(var i=0;i<data.length;i++)
+            {
+                petrow+="<tr>"
+                    petrow+="<td>"
+                petrow+=data[i].name;
+                petrow+="</td>";
+                petrow+="<td>"
+                petrow+=data[i].age;
+                petrow+="</td>";
+                petrow+="<td>"
+                petrow+=data[i].weight_in_kg;
+                petrow+="</td>";
+                petrow+="<td>"
+                petrow+=data[i].type;
+                petrow+="</td>";
+                petrow+="<td>"
+                petrow+=data[i].likes;
+                petrow+="</td>";
+
+                
+            }
+            $("#pet").append(petrow);
+        };
+    </script>
+    
+</body>
+</html>
